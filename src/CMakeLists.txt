@@ -1,4 +1,4 @@
-add_llvm_pass_plugin(SkeletonPass
+add_llvm_pass_plugin(PeepHolePass
     # List your source files here.
-    Skeleton.cpp
+    PeepHole.cpp
 )
