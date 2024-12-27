@@ -44,7 +44,7 @@ compile() {
     # Apply passes
     opt -load-pass-plugin "build/src/PeepHole/PeepHolePass.so" \
         -load-pass-plugin "build/src/sroa/SROAPass.so" \
-        -passes="mysroa,instcombine" "${RELATIVE_PATH}.ll" -S -o "${RELATIVE_PATH}_with_pass.ll" -debug-pass-manager
+        -passes="mysroa,peephole" "${RELATIVE_PATH}.ll" -S -o "${RELATIVE_PATH}_with_pass.ll" -debug-pass-manager
     COMPILE_END=$(date +%s%N)
     COMPILE_TIME=$((($COMPILE_END - $COMPILE_START) / 1000000))
     llvm-as "${RELATIVE_PATH}.ll" -o "${RELATIVE_PATH}.bc"
