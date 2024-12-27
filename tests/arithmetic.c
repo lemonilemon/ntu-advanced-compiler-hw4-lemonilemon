@@ -14,6 +14,7 @@ int32_t test_complex_arithmetic(int32_t x, int32_t y) {
   // Nested operations with multiple optimization opportunities
   int32_t e = (a + b) + (a + b);    // -> 2*(x + 30 + (x << 6))
   int32_t f = ((x << 2) << 3) << 1; // -> x << 6
+  int32_t g = x * 2;                // -> x << 1
 
   return e + f;
 }
@@ -109,7 +110,6 @@ int run_all_tests() {
 }
 
 int main() {
-  srand(42);
   int ret = 0;
   for (int i = 0; i < 100000000; i++) {
     ret ^= run_all_tests();
