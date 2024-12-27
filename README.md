@@ -27,6 +27,16 @@ cd ntu-advanced-compiler-hw4-lemonilemon
 bash build.sh
 ```
 
+## Running Passes
+
+```bash
+clang -O0 -S -emit-llvm -Xclang -disable-O0-optnone -o <your_ll> <your_c>
+opt -load-pass-plugin "build/src/PeepHole/PeepHolePass.so" \
+        -load-pass-plugin "build/src/sroa/SROAPass.so" \
+        -passes="mysroa,peephole" <your_ll> -o  <your_bc>
+clang <your_bc> -o <your_exe>
+```
+
 ## Testing
 
 I have written a script in `./tests` folder to test the pass.
